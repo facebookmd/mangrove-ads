@@ -195,23 +195,23 @@
 			color:#fff;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 769px) {
             .logo {
                 width: 150px;
                 height: 150px;
                 font-size: 60px;
+				color:fff;
             }
 
-            .search-box {
-                flex-direction: column;
-            }
-
+			.search-container {
+				display:none;
+			}
+			
             .info-boxes {
-                flex-direction: column;
-                width: 100%;
+				display:none;
             }
 
             .info-box, .transparency-link {
-                width: 100%;
+				display:none;
             }
-        }
+		}

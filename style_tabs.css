@@ -109,7 +109,12 @@
             text-decoration: underline;
 		}
 	
-	
+		 @media (max-width: 769px) {
+			.nav-links {
+				display:none;
+			}
+		}
+
 	
 /*footer*/
 
@@ -146,4 +151,5 @@
       .footer__split{flex-direction:row; align-items:flex-start}
       .footer__left, .footer__right{flex:1}
       .footer__meta{flex-direction:row; justify-content:space-between; width:100%; align-items:center}
+
     }

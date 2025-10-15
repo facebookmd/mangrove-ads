@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangrove Tab - Plant Mangroves While You Browse</title>
+    <meta name="description" content="Plant mangroves through your casual searches!">
+    <link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+  
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="menu-button" onclick="toggleMenu()">Menu ☰</button>
+    
+    <div class="menu-dropdown" id="menuDropdown">
+        <a href="about.html">About Us</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="logo">Mangrove Tab</div>
+
+    <div class="search-container">
+        <form class="search-box" onsubmit="performSearch(event)">
+            <input 
+                type="text" 
+                class="search-input" 
+                placeholder="IWAS BAHA: Mangrove Tab na!"
+                id="searchInput"
+                autocomplete="off"
+            >
+            <button type="submit" class="search-button">Search</button>
+        </form>
+    </div>
+
+    <div class="info-boxes">
+        <div class="info-box">
+            <span class="counter-number">--</span>
+            <span class="counter-label">Mangroves Planted</span>
+        </div>
+        <a href="transparency.html" class="transparency-link">
+            <span>Transparency Report</span>
+        </a>
+    </div>
+
+    <script>
+        // Menu toggle
+        function toggleMenu() {
+            const dropdown = document.getElementById('menuDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('menuDropdown');
+            const menuButton = document.querySelector('.menu-button');
+            
+            if (!dropdown.contains(event.target) && !menuButton.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Search functionality
+        function performSearch(event) {
+            event.preventDefault();
+            const query = document.getElementById('searchInput').value.trim();
+            
+            if (query) {
+                // Using Google search - you can change this to DuckDuckGo or Bing
+                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Counter functionality
+        function updateCounter() {
+            // This would be connected to your backend/database
+            // For now, showing a demo counter from localStorage
+            let count = localStorage.getItem('mangroveCount') || 0;
+            document.getElementById('mangroveCounter').textContent = parseInt(count).toLocaleString();
+        }
+
+        // Track tab opens (increment counter)
+        function trackTabOpen() {
+            let count = parseInt(localStorage.getItem('mangroveCount') || 0);
+            let userTabs = parseInt(localStorage.getItem('userTabCount') || 0);
+            
+            userTabs++;
+            localStorage.setItem('userTabCount', userTabs);
+            
+            // Example: Every 10 tabs = 1 mangrove point
+            // You'll want to connect this to your actual backend
+            if (userTabs % 10 === 0) {
+                count++;
+                localStorage.setItem('mangroveCount', count);
+            }
+            
+            updateCounter();
+        }
+
+        // Initialize
+        updateCounter();
+        trackTabOpen();
+    </script>
+</body>
+</html>

@@ -52,19 +52,6 @@
             <span>Transparency Report</span>
         </a>
     </div>
-	
-    <div class="cookie-popup" id="cookiePopup">
-        <h3>We Use Cookies</h3>
-        <p>
-            We use cookies to improve your browsing experience and remember your preferences. 
-            By clicking "Accept", you consent to our use of cookies. 
-            <a href="privacy.html">Learn more in our Privacy Policy</a>.
-        </p>
-        <div class="cookie-buttons">
-            <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accept</button>
-            <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">Decline</button>
-        </div>
-    </div>
 
     <script>
         // Menu toggle
@@ -92,35 +79,8 @@
                 // Using Google search - you can change this to DuckDuckGo or Bing
                 window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
             }
-        }
-
-        // Initialize
-        updateCounter();
-        trackTabOpen();
-		
-		        // Cookie Popup Functions
-        function checkCookieConsent() {
-            const consent = localStorage.getItem('cookieConsent');
-            if (!consent) {
-                // Show popup after a short delay for better UX
-                setTimeout(() => {
-                    document.getElementById('cookiePopup').classList.add('show');
-                }, 1000);
-            }
-        }
-
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.getElementById('cookiePopup').classList.remove('show');
-        }
-
-        function declineCookies() {
-            localStorage.setItem('cookieConsent', 'declined');
-            document.getElementById('cookiePopup').classList.remove('show');
-        }
-
-        // Check cookie consent on page load
-        checkCookieConsent();
+        }	
     </script>
 </body>
 </html>
+

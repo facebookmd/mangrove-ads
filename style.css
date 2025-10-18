@@ -314,4 +314,9 @@
             .info-box, .transparency-link {
 				display:none;
             }
+
+			.body {
+				padding: 100px;
+			}
         }
+

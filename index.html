@@ -11,10 +11,12 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 	
+		
 	<link rel="icon" href="leaf.png">
 
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4052982467927576"
      crossorigin="anonymous"></script>
+
 </head>
 <body>
     <button class="menu-button" onclick="toggleMenu()">Menu ☰</button>
@@ -50,6 +52,19 @@
             <span>Transparency Report</span>
         </a>
     </div>
+	
+    <div class="cookie-popup" id="cookiePopup">
+        <h3>We Use Cookies</h3>
+        <p>
+            We use cookies to improve your browsing experience and remember your preferences. 
+            By clicking "Accept", you consent to our use of cookies. 
+            <a href="privacy.html">Learn more in our Privacy Policy</a>.
+        </p>
+        <div class="cookie-buttons">
+            <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accept</button>
+            <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">Decline</button>
+        </div>
+    </div>
 
     <script>
         // Menu toggle
@@ -79,37 +94,33 @@
             }
         }
 
-        // Counter functionality
-        function updateCounter() {
-            // This would be connected to your backend/database
-            // For now, showing a demo counter from localStorage
-            let count = localStorage.getItem('mangroveCount') || 0;
-            document.getElementById('mangroveCounter').textContent = parseInt(count).toLocaleString();
-        }
-
-        // Track tab opens (increment counter)
-        function trackTabOpen() {
-            let count = parseInt(localStorage.getItem('mangroveCount') || 0);
-            let userTabs = parseInt(localStorage.getItem('userTabCount') || 0);
-            
-            userTabs++;
-            localStorage.setItem('userTabCount', userTabs);
-            
-            // Example: Every 10 tabs = 1 mangrove point
-            // You'll want to connect this to your actual backend
-            if (userTabs % 10 === 0) {
-                count++;
-                localStorage.setItem('mangroveCount', count);
-            }
-            
-            updateCounter();
-        }
-
         // Initialize
         updateCounter();
         trackTabOpen();
+		
+		        // Cookie Popup Functions
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                // Show popup after a short delay for better UX
+                setTimeout(() => {
+                    document.getElementById('cookiePopup').classList.add('show');
+                }, 1000);
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookiePopup').classList.remove('show');
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookiePopup').classList.remove('show');
+        }
+
+        // Check cookie consent on page load
+        checkCookieConsent();
     </script>
 </body>
-
 </html>
-

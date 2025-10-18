@@ -221,15 +221,6 @@
     .links__col{min-width:140px}
     .links a{display:block; text-decoration:none; color:inherit}
     .links a:hover{color:#75cf96}
-
-    /* Responsive breakpoints */
-    @media (min-width:700px){
-      .footer__container{padding:8px}
-      .footer__split{flex-direction:row; align-items:flex-start}
-      .footer__left, .footer__right{flex:1}
-      .footer__meta{flex-direction:row; justify-content:space-between; width:100%; align-items:center}
-
-    }
 		}
 
         @media (max-width: 875px) {
@@ -255,6 +246,7 @@
 				display:none;
 			}
 		}
+
 
 
 

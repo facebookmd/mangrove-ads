@@ -1,131 +1,358 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mangrove Tab - Plant Mangroves While You Browse</title>
-    <meta name="description" content="Plant mangroves through your casual searches!">
-    <link rel="stylesheet" href="style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-  
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-	
-		
-	<link rel="icon" href="leaf.png">
-
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4052982467927576"
-     crossorigin="anonymous"></script>
-
-</head>
-<body>
-    <button class="menu-button" onclick="toggleMenu()">Menu ☰</button>
-    
-    <div class="menu-dropdown" id="menuDropdown">
-        <a href="about.html">About Us</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="contact.html">Contact</a>
-    </div>
-
-    <div class="logo">Mangrove Tab</div>
-	<div class="description">
-		This site helps you reforest coasts with your casual searching. Check the menu or scroll down to learn more!  
-	</div>
-    <div class="search-container">
-        <form class="search-box" onsubmit="performSearch(event)">
-            <input 
-                type="text" 
-                class="search-input" 
-                placeholder="IWAS BAHA: Mangrove Tab na!"
-                id="searchInput"
-                autocomplete="off"
-            >
-            <button type="submit" class="search-button">Search</button>
-        </form>
-    </div>
-
-    <div class="info-boxes">
-        <div class="info-box">
-            <span class="counter-number">--</span>
-            <span class="counter-label">Mangroves Planted</span>
-        </div>
-        <a href="transparency.html" class="transparency-link">
-            <span>Transparency Report</span>
-        </a>
-    </div>
-</body>
-
-	  <footer class="footer" role="contentinfo">
-    <div class="footer__container">
-      <div class="footer__split">
-
-        <!-- LEFT: brand / summary -->
-        <div class="footer__left" aria-label="About">
-          <div class="brand">
-            <div class="brand__title">Mangrove Tab</div>
-            <div class="brand__desc">Brought to you by Baha Brigada, a youth-led organization based in the University of the Philippines alleviating flood risk in the country.</div>
-          </div>
-        </div>
-
-        <!-- RIGHT: links / contact -->
-        <div class="footer__right" aria-label="Site links and contact">
-          <div class="links">
-		    <div class="brand__title">Menu</div>
-            <div class="links__row">
-              <div class="links__col">
-                <a href="about.html">About</a>
-				<a href="transparency.html">Transparency</a>
-              </div>
-              <div class="links__col">
-                <a href="contact.html">Contact</a>
-				<a href="transparency.html">Privacy</a>
-              </div>
-			  <div class="links__col">
-				<div>&copy;  Baha Brigada</div>
-			  </div>
-            </div>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </footer>
-
-    <script>
-        // Menu toggle
-        function toggleMenu() {
-            const dropdown = document.getElementById('menuDropdown');
-            dropdown.classList.toggle('active');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('menuDropdown');
-            const menuButton = document.querySelector('.menu-button');
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #35353c;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 210px;
+        }
+
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 7px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .menu-dropdown {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 0px 0px 7px 7px;
+			border-top: 2px solid #75cf96;
+            padding: 10px;
+            display: none;
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .menu-dropdown.active {
+            display: block;
+        }
+
+        .menu-dropdown a {
+            display: block;
+            padding: 12px 16px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+            font-weight: 500;
+        }
+
+        .menu-dropdown a:hover {
+            color:#75cf96;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+			margin-bottom: 0em;
+			font-family: "Anton", sans-serif;
+			font-weight: 400;
+			font-style: normal;
+			color: #75cf96;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+        }
+
+        .search-input {
+			width: 100%;
+			padding: 1em 0.7em 0.7em 1.5em;
+			border: 2px solid #75cf96;
+			border-radius: 25px 0 0 25px;
+			font-size: 1.2em;
+			background: #51505a;
+			color: #9da5a3;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-button {
+            padding: 0.5em 1em;
+			border: 2px solid #75cf96;
+			border-left: none;
+			background: #75cf96;
+			color: #fff;
+			border-radius: 0 25px 25px 0;
+			cursor: pointer;
+			padding: 16px 32px;
             
-            if (!dropdown.contains(event.target) && !menuButton.contains(event.target)) {
-                dropdown.classList.remove('active');
+        }
+
+        .search-button:hover {
+			background: #85e4a8;
+        }
+
+        .info-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 600px;
+        }
+
+        .info-box {
+            background: fff;
+            padding: 10px 30px;
+            border-radius: 16px 0 0 16px;
+            text-align: center;
+            min-width: 200px;
+			display:flex;
+			flex-wrap: wrap;
+            justify-content: center;
+			align-items:center;
+			border:1px solid black;
+        }
+
+        .counter-number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #75cf96;
+        }
+
+        .counter-label {
+            font-size: 12px;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+			padding:0 0 0 10px;
+        }
+
+        .transparency-link {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 30px;
+            border-radius: 0px 16px 16px 0px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: #75cf96;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+			border:1px solid black;
+        }
+
+        .transparency-link:hover {
+			background-color: rgba(117, 207, 150, 0.8);
+			color:#fff;
+        }
+
+        @media (max-width: 600px) {
+            .logo {
+                height: 150px;
+                font-size: 60px;
             }
-        });
 
-        // Search functionality
-        function performSearch(event) {
-            event.preventDefault();
-            const query = document.getElementById('searchInput').value.trim();
-            
-            if (query) {
-                // Using Google search - you can change this to DuckDuckGo or Bing
-                window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            .search-box {
+                flex-direction: column;
             }
-        }	
-    </script>
-</html>
+
+            .info-boxes {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .info-box, .transparency-link {
+                width: 100%;
+            }
+		}
+
+        @media (max-width: 875px) {
+			.search-container {
+				display:none;
+			}
+			
+            .info-boxes {
+				display:none;
+            }
+
+            .info-box, .transparency-link {
+				display:none;
+            }
+
+			body {
+				padding: 210px 20px 0px;
+				min-height: 150vh;
+				display: flex; flex-direction: column
+			}
 
 
+			.description {
+				font-size: 1.3em;
+    			margin-bottom: 2em;
+    			font-family: 'Segoe UI';
+    			font-style: normal;
+    			color: #fff;
+    			text-align: center;
+    			justify-content: center;
+				margin: 0 auto 2em;       /* center block and keep bottom spacing */
+    			max-width: 900px;         /* optional, prevents lines from getting too long */
+    			padding: 0 20px;          /* horizontal padding you asked for */
+    			box-sizing: border-box;   /* include padding in width calculation */
+				display:block;
+  			}
 
+  /* ensure footer sticks to bottom in the flex layout */
+  			.footer {
+    			margin-top: auto;
+    			padding: 24px 16px;
+  			}
+			}
 
+/* Desktop behavior: show different parts */
+			@media (min-width: 875px) {
+  			.description {
+    			display: none;
+  			}
 
+ 			 footer {
+ 			   display: none;
+ 			 }
+			}
+
+			/* Footer base */
+			footer.footer {
+			  background: #75cf96;
+			  color: #35353c;
+			  padding: 24px 16px;
+			  box-sizing: border-box;
+			}
+
+/* Full-bleed footer while keeping body padding:
+   pulls the footer visually to the viewport edges even though body has horizontal padding.
+*/
+			footer.footer {
+ 			  width: 100vw;
+ 			  max-width: 100vw;
+ 			  margin-left: calc(50% - 50vw);
+  			  margin-right: calc(50% - 50vw);
+ 			  box-sizing: border-box;
+ 			  margin-top: auto; /* push to bottom in flex layout */
+ 			  z-index: 1;
+			}
+
+/* Footer inner container */
+			.footer__container {
+ 			 max-width: 1100px;
+ 			 margin: 0 auto;
+ 			 display: flex;
+ 			 flex-direction: column;
+ 			 gap: 18px;
+			}
+
+/* Split layout - stacks on narrow screens */
+.footer__split {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer__left,
+.footer__right {
+  padding: 16px;
+  border-radius: 10px;
+  background: #75cf96;
+}
+
+/* Left column content */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.brand__title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.brand__desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+/* Right column content (links, contact) */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.links__row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.links__col {
+  min-width: 140px;
+}
+
+.links a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.links a:hover {
+  color: #75cf96;
+}
+
+/* Responsive breakpoints for footer */
+@media (min-width: 700px) {
+  .footer__container {
+    padding: 8px;
+  }
+  .footer__split {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .footer__left,
+  .footer__right {
+    flex: 1;
+  }
+  .footer__meta {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+}

@@ -40,6 +40,7 @@
                 placeholder="IWAS BAHA: Mangrove Tab na!"
                 id="searchInput"
                 autocomplete="off"
+				autofocus
             >
             <button type="submit" class="search-button">Search</button>
         </form>
@@ -122,8 +123,15 @@
                 window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
             }
         }	
+
+		window.addEventListener("load", () => {
+  			const input = document.getElementById("searchInput");
+  			if (input) input.focus();
+		});
+
     </script>
 </html>
+
 
 
 

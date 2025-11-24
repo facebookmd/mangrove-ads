@@ -18,6 +18,16 @@
      crossorigin="anonymous"></script>
 
 </head>
+<script>
+    (function(ac) {
+      var d = document, s = 'script', id = 'adplugg-adjs';
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id; js.async = 1;
+      js.src = '//www.adplugg.com/serve/' + ac + '/js/1.1/ad.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }('A48226958'));
+</script>
 <body>
     <button class="menu-button" onclick="toggleMenu()">Menu ☰</button>
     
@@ -55,6 +65,8 @@
             <span>Transparency Report</span>
         </a>
     </div>
+	<br>
+	<div class="adplugg-tag"></div>
 </body>
 
 	  <footer class="footer" role="contentinfo">
@@ -128,18 +140,9 @@
   			const input = document.getElementById("searchInput");
   			if (input) input.focus();
 		});
-
-		(function(ac) {
-      		var d = document, s = 'script', id = 'adplugg-adjs';
-      		var js, fjs = d.getElementsByTagName(s)[0];
-      		if (d.getElementById(id)) return;
-      		js = d.createElement(s); js.id = id; js.async = 1;
-      		js.src = '//www.adplugg.com/serve/' + ac + '/js/1.1/ad.js';
-      		fjs.parentNode.insertBefore(js, fjs);
-    	}('A48226958'));
-
     </script>
 </html>
+
 
 
 
